@@ -35,8 +35,8 @@ private WordNode head;
 			
 	}
 	public void printThatWordNode(WordNode p){
-		//System.out.println("location of the word node:" + p);
-		//System.out.println("location of the next word node:" + p.getWordUp()); 
+		System.out.println("location of the word node:" + p);
+		System.out.println("location of the next word node:" + p.getWordUp()); 
 		System.out.println("location of the letter list within:" + p.getLetHead());
 	}
 	public void printItAll(){		
@@ -72,32 +72,48 @@ private WordNode head;
 		boolean letsGo = true;
 		int x = 0;
 		int wordLength = 0;
+		String loc = "";
 		
 	
 		System.out.println("Enter a string");
 		answer = getInput();
 		
 		
-		
 		while(answer.charAt(x)!=46){		//until theres a period
 			LetNode firstLetNode = new LetNode();
 			WordNode firstWordNode = new WordNode();
+		
+			
+			if(x==0){	//at the very start
+				firstWordNode.setLetHead(firstLetNode);
+				
+				
+			}
 			
 			if(answer.charAt(x)!=32){		//if not a space
 				
 				firstLetNode.setLet(answer.charAt(x));
-				
+				myLetList.addLetNodeEnd(firstLetNode);
 				
 					
 			}
 							
-			else{							//if space
-				
-				
+			if(answer.charAt(x)==32){							//if space
+				//System.out.println("SPACE");
+				firstWordNode.setLetHead(firstLetNode);
+				loc = firstWordNode.getWordUp();
+				System.out.println("GET WORDUP YIELDS" + loc);
+				//firstWordNode.setNext();
 			}
-				
+			
+			System.out.println(x + "---------");
 			x++;
+			myWordList.printThatWordNode(firstWordNode);
+			myLetList.printThatLetNode(firstLetNode);
+			//myLetList.printItAll();
 		}
+		
+		//myLetList.printItAll();
 				
 	}
 }
